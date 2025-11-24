@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Put, Req, UseGuards } from '@nestjs/common'
+import { Body, Controller, Get, Patch, Req, UseGuards } from '@nestjs/common'
 import { BalanceService } from './balance.service'
 import { ActionBalanceDto } from './dto/actionBalance.dto'
 import { AuthGuard } from 'src/common/guards/auth.guard'
@@ -16,7 +16,7 @@ export class BalanceController {
   }
 
   @UseGuards(AuthGuard)
-  @Put('action')
+  @Patch('action')
   actionBalance(@Body() body: ActionBalanceDto, @CurrentUser() user: TUser) {
     return this.balanceService.actionBalance(body, user)
   }
